@@ -87,13 +87,18 @@ button:focus-visible {
 }
 
 .card {
-  background: #fff;
+  background: #7a7a7a;
   padding: 1rem;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.card-acciones {
+  display: flex;
+  gap: 0.5rem;
 }
 
 .info p {
@@ -104,7 +109,7 @@ button:focus-visible {
 .form {
   max-width: 400px;
   padding: 1rem;
-  background: #f9f9f9;
+  background: #999999;
   border-radius: 8px;
   margin: 0 auto;
 }
@@ -131,7 +136,7 @@ button {
 }
 
 .column {
-  background: #f5f5f5;
+  background: #999999;
   padding: 1rem;
   border-radius: 8px;
 }

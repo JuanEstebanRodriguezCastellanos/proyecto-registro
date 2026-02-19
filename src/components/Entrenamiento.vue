@@ -63,10 +63,3 @@ const guardarEdicion = async (e: Entrenamiento) => {
     </div>
   </div>
 </template>
-
-<style scoped>
-.card-acciones {
-  display: flex;
-  gap: 0.5rem;
-}
-</style>

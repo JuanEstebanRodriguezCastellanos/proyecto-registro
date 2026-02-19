@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap');
 
-/* ─── TOKENS ─────────────────────────────────────────────── */
+/* ─── VARIABLES ─────────────────────────────────────────────── */
 :root {
   --bg:            #0e0f11;
   --bg-surface:    #16181c;
@@ -61,14 +61,14 @@ body {
   );
 }
 
-/* ─── APP SHELL ──────────────────────────────────────────── */
+/* ─── APP ──────────────────────────────────────────── */
 #app {
   max-width: 1200px;
   margin: 0 auto;
   padding: 2.5rem 1.5rem 4rem;
 }
 
-/* ─── TYPOGRAPHY ─────────────────────────────────────────── */
+/* ─── TIPOGRAFIA ─────────────────────────────────────────── */
 h1 {
   font-family: var(--font-display);
   font-size: clamp(2.2rem, 6vw, 3.8rem);
@@ -100,7 +100,7 @@ h2 {
   align-items: start;
 }
 
-/* ─── COLUMN PANEL ───────────────────────────────────────── */
+/* ─── COLUMN ───────────────────────────────────────── */
 .column {
   background: var(--bg-surface);
   border: 1px solid var(--border);
@@ -196,7 +196,6 @@ button {
   color: var(--text-primary);
 }
 
-/* Submit del formulario principal */
 .form button[type="submit"] {
   background: var(--accent);
   color: #fff;
@@ -219,7 +218,6 @@ button {
   transform: translateY(0);
 }
 
-/* Botones icono en las cards */
 .card-acciones button {
   background: transparent;
   border: 1px solid var(--border);
@@ -241,7 +239,6 @@ button {
   background: rgba(239, 68, 68, 0.08);
 }
 
-/* Botón cancelar del modal */
 .btn-cancelar {
   flex: 1;
   background: transparent;
@@ -297,7 +294,6 @@ button {
   opacity: 1;
 }
 
-/* .info: fecha en display font + stats en bloques */
 .info {
   display: flex;
   flex-direction: column;
@@ -311,8 +307,6 @@ button {
   color: var(--text-primary);
 }
 
-/* El <p> con "X min · Y km" se transforma en flex row de stat-blocks
-   mediante los elementos con clase que se añaden en el template */
 .card-stats {
   display: flex;
   gap: 0.6rem;

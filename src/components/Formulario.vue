@@ -25,6 +25,8 @@ const guardarEntrenamiento = async () => {
     duracion: 0,
     distancia: 0,
   };
+
+  window.alert("Entrenamiento registrado correctamente.");
 };
 </script>
 
@@ -38,12 +40,12 @@ const guardarEntrenamiento = async () => {
 
     <label>
       Duración (min)
-      <input type="number" v-model.number="entrenamiento.duracion" required />
+      <input type="number" v-model.number="entrenamiento.duracion" min="0" required />
     </label>
 
     <label>
       Distancia (km)
-      <input type="number" step="1" v-model.number="entrenamiento.distancia" required />
+      <input type="number" step="1" v-model.number="entrenamiento.distancia" min="0" required />
     </label>
 
     <button type="submit">Guardar</button>

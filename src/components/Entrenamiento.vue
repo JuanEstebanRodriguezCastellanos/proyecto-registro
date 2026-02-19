@@ -1,18 +1,17 @@
 <script setup lang="ts">
-import { onMounted, onUnmounted } from "vue";
-import { collection, onSnapshot, query, orderBy } from "firebase/firestore";
+import { ref, onMounted, onUnmounted } from "vue";
+import { collection, onSnapshot, query, orderBy, deleteDoc, doc, updateDoc } from "firebase/firestore";
 import { db } from "../firebase";
 import type { Entrenamiento } from "../types/Entrenamiento";
+import ModalEditar from "./ModalEdicion.vue";
 
-const entrenamientos = defineModel<Entrenamiento[]>({ required: true });
+const entrenamientos = ref<Entrenamiento[]>([]);
+const entrenamientoEditando = ref<Entrenamiento | null>(null);
 
 let unsubscribe: () => void;
 
 onMounted(() => {
-  const q = query(
-    collection(db, "entrenamientos"),
-    orderBy("fecha", "desc")
-  );
+  const q = query(collection(db, "entrenamientos"), orderBy("fecha", "desc"));
 
   unsubscribe = onSnapshot(q, (snapshot) => {
     entrenamientos.value = snapshot.docs.map(doc => ({
@@ -25,9 +24,31 @@ onMounted(() => {
 onUnmounted(() => {
   unsubscribe && unsubscribe();
 });
+
+const eliminar = async (id: string) => {
+  if (!id) return;
+  await deleteDoc(doc(db, "entrenamientos", id));
+};
+
+const guardarEdicion = async (e: Entrenamiento) => {
+  if (!e.id) return;
+  await updateDoc(doc(db, "entrenamientos", e.id), {
+    fecha: e.fecha,
+    duracion: e.duracion,
+    distancia: e.distancia,
+  });
+  entrenamientoEditando.value = null;
+};
 </script>
 
 <template>
+  <ModalEditar
+    v-if="entrenamientoEditando"
+    :entrenamiento="entrenamientoEditando"
+    @guardar="guardarEdicion"
+    @cancelar="entrenamientoEditando = null"
+  />
+
   <div class="cards">
     <div class="card" v-for="e in entrenamientos" :key="e.id">
       <div class="info">
@@ -35,11 +56,17 @@ onUnmounted(() => {
         <p>{{ e.duracion }} min · {{ e.distancia }} km</p>
       </div>
 
-      <!-- Se elimina el bloque de botones -->
-      <!-- <div class="acciones">
-        <button @click="emit('editar', e)">✏️</button>
-        <button @click="eliminar(e.id)">🗑️</button>
-      </div> -->
+      <div class="card-acciones">
+        <button @click="entrenamientoEditando = e">✏️</button>
+        <button @click="eliminar(e.id!)">❌</button>
+      </div>
     </div>
   </div>
 </template>
+
+<style scoped>
+.card-acciones {
+  display: flex;
+  gap: 0.5rem;
+}
+</style>

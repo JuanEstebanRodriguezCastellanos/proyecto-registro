@@ -12,7 +12,6 @@ Aplicación web para el registro, edición y visualización de entrenamientos f�
 - Editar o eliminar entrenamientos existentes
 - Historial en tiempo real mediante `onSnapshot` de Firestore
 - Visualización de registros en tarjetas (cards) ordenadas por fecha
-- Tipado estático con TypeScript mediante interfaces definidas
 
 ---
 

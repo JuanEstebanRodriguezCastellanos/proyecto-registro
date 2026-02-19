@@ -51,15 +51,26 @@ const guardarEdicion = async (e: Entrenamiento) => {
 
   <div class="cards">
     <div class="card" v-for="e in entrenamientos" :key="e.id">
+
       <div class="info">
         <strong>{{ e.fecha }}</strong>
-        <p>{{ e.duracion }} min · {{ e.distancia }} km</p>
+        <div class="card-stats">
+          <div class="stat-block">
+            <span class="stat-value">{{ e.duracion }}</span>
+            <span class="stat-label">Minutos</span>
+          </div>
+          <div class="stat-block">
+            <span class="stat-value">{{ e.distancia }}</span>
+            <span class="stat-label">Km</span>
+          </div>
+        </div>
       </div>
 
       <div class="card-acciones">
-        <button @click="entrenamientoEditando = e">✏️</button>
-        <button @click="eliminar(e.id!)">❌</button>
+        <button @click="entrenamientoEditando = e" title="Editar">✏️</button>
+        <button @click="eliminar(e.id!)" title="Eliminar">❌</button>
       </div>
+
     </div>
   </div>
 </template>
